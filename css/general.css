@@ -1,0 +1,337 @@
+@charset "utf-8";
+/* General CSS Document */
+/*=======================
+Body
+=======================*/
+body {
+	font: normal 100% "Roboto", "Open Sans", Verdana, Geneva, sans-serif;
+}
+
+/*=======================
+Page grid
+=======================*/
+*,
+*::after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.conteiner {
+	margin: 0 auto;
+	max-width: 80%;
+}
+/*=======================
+Clear fix
+=======================*/
+.clearfix:before,
+.clearfix:after {
+	content: "";
+	display: table;
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix {
+	clear: both;
+	*zoom: 1;
+}
+/*=======================
+Fonts
+=======================*/
+@font-face {
+  font-family: 'fontello';
+  src: url('../font/fontello.eot?18169758');
+  src: url('../font/fontello.eot?18169758#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?18169758') format('woff2'),
+       url('../font/fontello.woff?18169758') format('woff'),
+       url('../font/fontello.ttf?18169758') format('truetype'),
+       url('../font/fontello.svg?18169758#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?18169758#fontello') format('svg');
+  }
+}
+*/
+@font-face {font-family: Roboto;
+	src: url(../font/Roboto-Regular.ttf) format("truetype");
+	font-weight: 400;
+	font-style:normal;
+}
+@font-face {font-family:Roboto;
+	src:url(../font/Roboto-Bold.ttf) format("truetype");
+	font-weight: bold;
+	font-style: normal;
+}
+	@font-face {font-family:Roboto;
+	src: url(../font/Roboto-Thin.ttf) format("truetype");
+	font-weight: 100;
+	font-style: normal;
+}
+/*=======================
+Icons
+=======================*/
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.2em;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 2em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-home-outline:before { content: '\e800'; } /* '' */
+.icon-mail:before { content: '\e801'; } /* '' */
+.icon-info-outline:before { content: '\e802'; } /* '' */
+
+/*=======================
+Header
+=======================*/
+header {
+	background: #404040;
+	position: relative;
+}
+h1{
+	font: 600 1.2em "Roboto", "Open Sans", Verdana, Geneva, sans-serif;
+	line-height: 1.15em;
+}
+.logo-title{
+	float: left;
+	color: #fff;
+}
+.logo-title span {
+	float: right;
+	width: 58%;
+}
+.logo-title a {
+	display: inline-block;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 18px 0 0;
+	border-top: solid 5px #fff;
+	background: #404040 url(../images/rd2.png) 0 100% no-repeat;
+	background-size: 40% auto;
+	background-origin: content-box;
+}
+.logo-title a:hover {
+	color: #ff7c1f;
+	border-top-color: #ff7c1f;
+	background: #404040 url(../images/rd1.png) 0 100% no-repeat;
+	background-size: 40% auto;
+	background-origin: content-box;
+}
+/*=======================
+CSS slider
+=======================*/
+@keyframes cycleone {
+   0%  {top: 0px;} /* При запуске слайдера, первое изображение уже видимо */
+   5%  {top: 0px;} /* Стартовая позиция */
+   20% { top: 0px; opacity: 1; z-index:0; } /* С 5% до 20 % (3 секунды) изображение видимо */
+   25% { top: 300px; opacity: 0; z-index: 0; } /* с 20% до 25% (1 секунды)выход изображения*/
+   26% { top: -300px; opacity: 0; z-index: -1; } /* Возвращение на исходную позицию за пределами маски */
+   90% { top: -300px; opacity: 0; z-index: 0; }
+   95% { top: -300px; opacity: 0; } /* С 95% до 100% (1 секунда) – вход */
+   100%{ top: 0px; opacity: 1; }
+}
+@keyframes cycletwo {
+   0%  { top: -300px; opacity: 0; } /* Исходная позиция за пределами маски */
+   20% { top: -300px; opacity: 0; }/* Начало движения с 20% */
+   25% { top: 0px; opacity: 1; }
+   30% { top: 0px; opacity: 1; }  /* С 25% до 30% (в течении 1 секунды) — вход*/
+   45% { top: 0px; opacity: 1; z-index: 0; }   /* С 30% до 45 % (3 секунды) изображение видимо */
+   50% { top: 300px; opacity: 0; z-index: 0; } /* С 45% до 50% (1 секунда)— выход */
+   51% { top: -300px; opacity: 0; z-index: -1; }   /* Возврат на исходную позицию */
+   100%{ top: -300px; opacity: 0; z-index: -1; }
+}
+@keyframes cyclethree {
+   0%  { top: -300px; opacity: 0; }
+   45% { top: -300px; opacity: 0; }
+   50% { top: 0px; opacity: 1; }
+   55% { top: 0px; opacity: 1; }
+   70% { top: 0px; opacity: 1; }
+   75% { top: 300px; opacity: 0; z-index: 0; }
+   76% { top: -300px; opacity: 0; z-index: -1; }
+   100%{ top: -300px; opacity: 0; z-index: -1; }
+}
+@keyframes cyclefour {
+   0%  { top: -300px; opacity: 0; }
+   70% { top: -300px; opacity: 0; }
+   75% { top: 0px; opacity: 1; }
+   90% { top: 0px; opacity: 1; }
+   95% { top: 0px; opacity: 1; z-index: 0; }
+   100%{ top: 300px; opacity: 0; z-index: 0; }
+}
+#slider-conteiner {
+	background: #000;
+	height: 300px;
+	margin-top: 20px;
+	position: relative;
+	overflow: visible;
+}
+#slider-mask {
+	overflow: hidden;
+	height: 300px;
+	position: relative;
+}
+div.firstanimation {
+   animation: cycleone 20s linear infinite;
+}
+
+div.secondanimation {
+   animation: cycletwo 20s linear infinite;
+}
+div.thirdanimation {
+   animation: cyclethree 20s linear infinite;
+}
+div.fourthanimation {
+   animation: cyclefour 20s linear infinite;
+}
+div.firstslide, div.secondslide, div.thirdslide, div.fourthslide {
+	width:100%;
+	height: 300px;
+	position: absolute;
+	top: 300px;
+}
+div.firstslide {
+	background: url(../images/slides/slide01.jpg) 50% 50%/cover no-repeat;
+}
+div.secondslide {
+	background: url(../images/slides/slide02.jpg) 50% 50%/cover no-repeat;	
+}
+div.thirdslide {
+	background: url(../images/slides/slide06.jpg) 50% 50%/cover no-repeat;	
+}
+div.fourthslide {
+	background: url(../images/slides/slide04.jpg) 50% 50%/cover no-repeat;	
+}
+/*=======================
+Navigation
+=======================*/
+a {
+	text-decoration: none;
+}
+#header-nav {
+	float: right;
+}
+#header-nav ul {
+	display: flex;
+	justify-content: space-between;
+	font: 600 .9em "Roboto", "Open Sans", Verdana, Geneva, sans-serif;
+	align-items: center;
+	color: #fff;
+	text-transform: uppercase;
+}
+#header-nav  a {
+	color: #fff;
+	display: block;
+	padding: 10px;
+}
+#header-nav a:hover{
+	color: #ff7c1f;
+}
+#main-nav {
+	background-color: #292929;
+	color: #000;
+}
+#main-nav ul {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-grow: 1;
+	font: 600 .9em "Roboto", "Open Sans", Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	text-align: center;
+	list-style: none;
+	position:relative;
+}
+#main-nav  a {
+	color: #ff7c1f;
+	display: block;
+	padding: 10px 10px;
+}
+#main-nav a:hover {
+	color: #fff;
+}
+
+/*=======================
+Content
+=======================*/
+#content {
+	background: #e3d8bc;
+}
+.colums {
+	padding-top: 10px;
+}
+.content-section {
+	width: 68.51%;
+	float: left;
+	padding-right: 1.49%;
+	padding-left: 10px;
+	text-align: justify;
+}
+.content-section h2 {
+	margin: 30px 0 15px; 
+ }
+.content-aside {
+	width:30%;
+	float: right;
+}
+ 
+/*=======================
+Footer
+=======================*/
+footer {
+	background: #404040;
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
